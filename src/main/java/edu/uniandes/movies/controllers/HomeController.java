@@ -6,11 +6,10 @@
 package edu.uniandes.movies.controllers;
 
 import edu.uniandes.movie.utils.ContentBasedUtilities;
-import static edu.uniandes.movie.utils.ContentBasedUtilities.createTagAsociatedFile;
-import static edu.uniandes.movie.utils.ContentBasedUtilities.createTagFile;
 import java.io.Serializable;
 import java.util.HashMap;
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Named;
 import javax.faces.bean.ViewScoped;
 
@@ -18,6 +17,7 @@ import javax.faces.bean.ViewScoped;
  *
  * @author juan
  */
+@ManagedBean
 @Named(value = "homeController")
 @ViewScoped
 public class HomeController implements Serializable {
@@ -27,17 +27,17 @@ public class HomeController implements Serializable {
      */
     public HomeController() {
     }
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         System.out.println("init********************************");
-        HashMap<String,String> tagMap = ContentBasedUtilities.createTagFile("/data/genome-tags.cvs");
+        HashMap<String, String> tagMap = ContentBasedUtilities.createTagFile("/data/genome-tags.cvs");
         ContentBasedUtilities.createTagAsociatedFile(tagMap, "/data/tags.cvs", "/data/tagsWithId.cvs");
         System.out.println("end init****************************");
     }
-    
-    public String helloWorld(){
-        return "hello world";
+
+    public String hello() {
+        return "hello World!!";
     }
-    
+
 }
