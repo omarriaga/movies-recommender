@@ -31,8 +31,9 @@ public class HomeController implements Serializable {
     @PostConstruct
     public void init() {
         System.out.println("init********************************");
-        HashMap<String, String> tagMap = ContentBasedUtilities.createTagFile("/data/genome-tags.cvs");
-        ContentBasedUtilities.createTagAsociatedFile(tagMap, "/data/tags.cvs", "/data/tagsWithId.cvs");
+        HashMap<String, String> tagMap = ContentBasedUtilities.createTagFile("/home/carlos/data/genome-tags.csv");
+        ContentBasedUtilities.createTagAsociatedFile(tagMap, "/home/carlos/data/tags.csv", "/home/carlos/data/tagsWithId.csv");
+        ContentBasedUtilities.createVoidFile("/home/carlos/data/prueba.csv");
         System.out.println("end init****************************");
     }
 

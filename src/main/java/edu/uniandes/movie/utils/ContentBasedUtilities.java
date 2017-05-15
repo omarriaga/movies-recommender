@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -63,12 +64,13 @@ public class ContentBasedUtilities {
                                                     String outpurFile){
 		BufferedReader reed=null;
 		PrintWriter pr= null;
-		
+                PrintWriter pr2= null;
+		int tagCount = 1128;
 		try {
 			reed= new BufferedReader(new FileReader(inputFile));
 			
 			pr= new PrintWriter(new File(outpurFile));
-			
+			pr2= new PrintWriter(new File("/home/carlos/data/newTags.csv"));
 			String line=null;
                         
                         String tagId = "";
@@ -82,8 +84,15 @@ public class ContentBasedUtilities {
                                 String tag=splitted[2];
                                 String timestamp=splitted[3];
                                 
-                                
-				tagId = tagMap.get(tag);
+                                if(tagMap.containsKey(tag)){
+                                    tagId = tagMap.get(tag);
+                                } else {
+                                    tagCount++;
+                                    tagId = String.valueOf(tagCount);
+                                    tagMap.put(tag, tagId);
+                                    pr2.println(tagId + "," + tag);
+                                }
+                               
                                 String outputLine = userId + "," + movieId + "," + tagId + "," +timestamp;
                                 pr.println(outputLine);
 			}
@@ -95,6 +104,29 @@ public class ContentBasedUtilities {
 			if(reed!=null)
                         try {reed.close();} 
 			catch (IOException e) {}
+			if(pr!=null){
+				pr.close();
+			}
+		}
+	}
+        
+        public static void createVoidFile(String outpurFile){
+		
+		PrintWriter pr= null;
+		
+		try {
+			
+			pr= new PrintWriter(new File(outpurFile));
+			
+			
+                        String outputLine = "hola";
+                        pr.println(outputLine);
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}finally{
 			if(pr!=null){
 				pr.close();
 			}
