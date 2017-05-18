@@ -20,16 +20,15 @@ import org.recommender101.recommender.extensions.contentbased.ContentBasedRecomm
  */
 public class ContentRecommender {
 
-    private GenericItemBasedRecommender recommender;
-
-    public void init() throws TasteException, IOException, Exception {
+    public static void init() throws Exception {
+        System.out.println("Cargando modelo");
         DataModel model = new DataModel() ;
         DataLoader loader= new DataLoader();
-        System.out.println("Cargando modelo");
-        loader.setFilename("/home/carlos/data/ratings.csv");
+        System.out.println("Cargando modelo terminado");
+        loader.setFilename("/home/carlos/data/ratings2.csv");
         loader.loadData(model);
         System.out.println("Creando archivo de pesos");
-        ContentBasedUtilities.createFeatureWeightFile("/home/carlos/data/tagWithId.csv", "/home/carlos/data/tag_weight.txt");
+        ContentBasedUtilities.createFeatureWeightFile("/home/carlos/data/tagsWithId.csv", "/home/carlos/data/tag_weight.txt");
         System.out.println("Creando recomendador");
         ContentBasedRecommender recommender= new ContentBasedRecommender();
         ContentBasedRecommender.dataDirectory="/home/carlos/data";

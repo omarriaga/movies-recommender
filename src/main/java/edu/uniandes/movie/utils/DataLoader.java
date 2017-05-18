@@ -31,7 +31,7 @@ public class DataLoader extends DefaultDataLoader {
                         Double rating = Double.parseDouble(tokens[2]);
 			dm.addRating(Integer.parseInt(tokens[0]), Integer.parseInt(tokens[1]), rating.intValue());
 			line = reader.readLine();
-//			System.out.println("line.." + line + " (" + counter + ")");
+			//System.out.println("line.." + line + " (" + counter + ")");
 			counter++;
 //			// debugging here..
 			if (maxLines != -1) {
